@@ -15,30 +15,30 @@ const clearAllBtn = document.querySelector('#clear-all');
 const todoList = loadFromLocalStorage('todos') ? new TodoList(loadFromLocalStorage('todos')) : new TodoList();
 
 // Render todos based on their status
-renderTodos(todoEl, todoList.items.filter((items) => items.status === 'to do'));
-renderTodos(inProgressEl, todoList.items.filter((items) => items.status === 'in progress'));
-renderTodos(completeEl, todoList.items.filter((items) => items.status === 'complete'));
+renderTodos(todoEl, todoList.items.filter((item) => item.status === 'to do'));
+renderTodos(inProgressEl, todoList.items.filter((item) => item.status === 'in progress'));
+renderTodos(completeEl, todoList.items.filter((item) => item.status === 'complete'));
 
 todoAddBtnEl.addEventListener('click', () => {
     todoList.add("test", 'to do');
-    saveToLocalStorage('todos', todoList.items);
+    // saveToLocalStorage('todos', todoList.items);
     location.reload();
 });
 
 inProgressAddBtnEl.addEventListener('click', () => {
     todoList.add("test", 'in progress');
-    saveToLocalStorage('todos', todoList.items);
+    // saveToLocalStorage('todos', todoList.items);
     location.reload();
 });
 
 completeAddBtnEl.addEventListener('click', () => {
     todoList.add("test", 'complete');
-    saveToLocalStorage('todos', todoList.items);
+    // saveToLocalStorage('todos', todoList.items);
     location.reload();
 });
 
 clearAllBtn.addEventListener('click', () => {
     todoList.clear();
-    saveToLocalStorage('todos', todoList.items);
+    // saveToLocalStorage('todos', todoList.items);
     location.reload();
 });
