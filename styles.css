@@ -201,4 +201,19 @@ select {
 
 .todo-option-btn {
     font-size: 10px;
+    border: none;
+    background-color: transparent;
+}
+
+.todo-option-btn-img {
+    height: 16px;
+    width: auto;
+}
+
+#todo-remove-btn {
+    filter:brightness(0%);
+}
+
+#todo-remove-btn:hover {
+    filter: brightness(100%);
 }

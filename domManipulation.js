@@ -21,18 +21,25 @@ function renderTodos(container, todos, todoListInstance) {
 
 function renderTodoOptions(container, todoListInstance, todoId) {
     let buttonGroup = document.createElement('div');
-    buttonGroup.id = 'todo-button-group';
     let modifyBtn = document.createElement('button');
+    let modifyIcon = document.createElement('img');
+    let removeBtn = document.createElement('button');
+    let removeIcon = document.createElement('img');
+
+    buttonGroup.id = 'todo-button-group';
     modifyBtn.id = 'todo-modify-btn';
     modifyBtn.classList.add('todo-option-btn');
-    modifyBtn.textContent = 'M';
-    let removeBtn = document.createElement('button');
+    modifyIcon.src = './assets/icons/modify.png';
+    modifyIcon.classList.add('todo-option-btn-img');
+    modifyBtn.appendChild(modifyIcon);
     removeBtn.id = 'todo-remove-btn';
     removeBtn.classList.add('todo-option-btn');
-    removeBtn.textContent = 'R';
+    removeIcon.src = './assets/icons/remove.png';
+    removeIcon.classList.add('todo-option-btn-img');
+    removeBtn.appendChild(removeIcon);
     buttonGroup.appendChild(modifyBtn);
     buttonGroup.appendChild(removeBtn);
-
+    
     container.appendChild(buttonGroup);
 
     removeBtn.addEventListener('click', () => {
