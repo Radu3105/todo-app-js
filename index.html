@@ -10,23 +10,31 @@
 
     <body>
         <div class="app-container">
+            <h1 class="title">Todo App</h1>
             <div class="todos-container">
                 <div id="state-to-do" class="state-container">
-                    <p>Todo</p>
-                    <ul id="to-do-list"></ul>
-                    <button id="add-to-do">Add new task</button>
+                    <div id="to-do-section-color">
+                        <p class="todo-section-header">To Do</p>
+                    </div>
+                    <div id="to-do-list" class="todo-list"></div>
+                    <button id="add-to-do" class="new-task-btn">+</button>
                 </div>
                 <div id="state-in-progress" class="state-container">
-                    <p>In Progress</p>
-                    <ul id="in-progress-list"></ul>
-                    <button id="add-in-progress">Add new task</button>
+                    <div id="in-progress-section-color">
+                        <p class="todo-section-header">In Progress</p>
+                    </div>
+                    <div id="in-progress-list" class="todo-list"></div>
+                    <button id="add-in-progress" class="new-task-btn">+</button>
                 </div>
                 <div id="state-complete" class="state-container">
-                    <p>Complete</p>
-                    <ul id="complete-list"></ul>
-                    <button id="add-complete">Add new task</button>
+                    <div id="complete-section-color">
+                        <p class="todo-section-header">Complete</p>
+                    </div>
+                    <div id="complete-list" class="todo-list"></div>
+                    <button id="add-complete" class="new-task-btn">+</button>
                 </div>
             </div>
+            <div class="spacer-50px"></div>
             <button id="clear-all">Clear All</button>
         </div>
     </body>

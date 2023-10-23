@@ -1,7 +1,12 @@
 function renderTodos(container, todos) {
     for (let todo of todos) {
-        let todoEl = document.createElement('li');
-        todoEl.textContent = `Id: ${todo.id}, Description: ${todo.description}, Status: ${todo.status}`;
+        let todoEl = document.createElement('div');
+        todoEl.classList.add('todo');
+
+        let todoDescription = document.createElement('p');
+        todoDescription.textContent = todo.description;
+        todoEl.appendChild(todoDescription);
+
         container.appendChild(todoEl); 
     }
 }
