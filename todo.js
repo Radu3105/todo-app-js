@@ -11,25 +11,32 @@ class Todo {
 }
 
 class TodoList {
-    constructor(items = []) {
+    constructor(items = []) { // Default value: []
         this.items = items;
     }
 
-    add(description, status) {
+    add(description, status) {        
         this.items.push(new Todo(description, status));
 
-        //TODO Save items to localStorage
+        // Save the todos and the current id to localStorage
         saveToLocalStorage('todos', this.items);
-
-        //TODO Save currentId to localStorage
         saveToLocalStorage('currentId', currentId); 
+
+        // Refresh the page
+        location.reload();
     }
 
     clear() {
+        // Reset fields
         this.items = [];
         currentId = 0;
+
+        // Save the todos and the current id to localStorage
         saveToLocalStorage('todos', []);
         saveToLocalStorage('currentId', currentId);
+
+        // Refresh the page
+        location.reload();
     }
 }
 
