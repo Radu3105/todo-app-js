@@ -1,7 +1,15 @@
-function renderTodos(container, todos) {
+function renderTodos(container, todos, todoListInstance) {
     for (let todo of todos) {
         let todoEl = document.createElement('div');
         todoEl.classList.add('todo');
+        
+        todoEl.addEventListener('mouseenter', () => {
+            renderTodoOptions(todoEl, todoListInstance, todo.id);
+        });
+
+        todoEl.addEventListener('mouseleave', () => {
+            todoEl.removeChild(document.querySelector('#todo-button-group'));
+        });
 
         let todoDescription = document.createElement('p');
         todoDescription.textContent = todo.description;
@@ -9,6 +17,27 @@ function renderTodos(container, todos) {
 
         container.appendChild(todoEl); 
     }
+}
+
+function renderTodoOptions(container, todoListInstance, todoId) {
+    let buttonGroup = document.createElement('div');
+    buttonGroup.id = 'todo-button-group';
+    let modifyBtn = document.createElement('button');
+    modifyBtn.id = 'todo-modify-btn';
+    modifyBtn.classList.add('todo-option-btn');
+    modifyBtn.textContent = 'M';
+    let removeBtn = document.createElement('button');
+    removeBtn.id = 'todo-remove-btn';
+    removeBtn.classList.add('todo-option-btn');
+    removeBtn.textContent = 'R';
+    buttonGroup.appendChild(modifyBtn);
+    buttonGroup.appendChild(removeBtn);
+
+    container.appendChild(buttonGroup);
+
+    removeBtn.addEventListener('click', () => {
+        todoListInstance.remove(todoId);
+    });
 }
 
 function renderCardForm(container) {

@@ -14,6 +14,7 @@ const cardForm = document.querySelector('#card-form');
 const todoListEl = document.querySelector('#to-do-list');
 const inProgressListEl = document.querySelector('#in-progress-list');
 const completeListEl = document.querySelector('#complete-list');
+const todoRemoveBtn = document.querySelector('#todo-remove-btn');
 
 // Check if todos exist in the localStorage and populate the new instance of TodoList with them.
 // If not, create a new instance of TodoList with empty items
@@ -22,9 +23,9 @@ const todoList = loadFromLocalStorage('todos') ? new TodoList(loadFromLocalStora
 const cardFormHandler = new CardFormHandler();
 
 // Render todos based on their status
-renderTodos(todoListEl, todoList.items.filter((item) => item.status === 'to do'));
-renderTodos(inProgressListEl, todoList.items.filter((item) => item.status === 'in progress'));
-renderTodos(completeListEl, todoList.items.filter((item) => item.status === 'complete'));
+renderTodos(todoListEl, todoList.items.filter((item) => item.status === 'to do'), todoList);
+renderTodos(inProgressListEl, todoList.items.filter((item) => item.status === 'in progress'), todoList);
+renderTodos(completeListEl, todoList.items.filter((item) => item.status === 'complete'), todoList);
 
 todoAddBtnEl.addEventListener('click', () => {
     cardFormHandler.open(todoEl);

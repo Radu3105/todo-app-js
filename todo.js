@@ -26,6 +26,15 @@ class TodoList {
         location.reload();
     }
 
+    remove(id) {
+        let itemIndex = this.items.findIndex((el) => el.id === id);
+        if (itemIndex !== -1) {
+            this.items.splice(itemIndex, 1);
+            saveToLocalStorage('todos', this.items);
+            location.reload();
+        }
+    }
+
     clear() {
         // Reset fields
         this.items = [];
