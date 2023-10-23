@@ -1,7 +1,6 @@
 import TodoList from "./todo.js";
-import CardFormHandler from "./cardFormHandler.js";
 import { loadFromLocalStorage } from "./localStorageHelpers.js";
-import { renderTodos } from "./domManipulation.js";
+import { renderTodos, removeAddButton, renderCardForm } from "./domManipulation.js";
 
 const todoEl = document.querySelector('#state-to-do');
 const inProgressEl = document.querySelector('#state-in-progress');
@@ -20,38 +19,39 @@ const todoRemoveBtn = document.querySelector('#todo-remove-btn');
 // If not, create a new instance of TodoList with empty items
 const todoList = loadFromLocalStorage('todos') ? new TodoList(loadFromLocalStorage('todos')) : new TodoList();
 
-const cardFormHandler = new CardFormHandler();
-
 // Render todos based on their status
 renderTodos(todoListEl, todoList.items.filter((item) => item.status === 'to do'), todoList);
 renderTodos(inProgressListEl, todoList.items.filter((item) => item.status === 'in progress'), todoList);
 renderTodos(completeListEl, todoList.items.filter((item) => item.status === 'complete'), todoList);
 
 todoAddBtnEl.addEventListener('click', () => {
-    cardFormHandler.open(todoEl);
+    renderCardForm(todoEl);
     const cardFormSubmitBtn = document.querySelector('#card-form-submit');
     cardFormSubmitBtn.addEventListener('click', () => {
         const cardFormDesriptionInput = document.querySelector('#card-form-description');
         todoList.add(cardFormDesriptionInput.value, 'to do');
     });
+    removeAddButton(todoAddBtnEl);
 });
 
 inProgressAddBtnEl.addEventListener('click', () => {
-    cardFormHandler.open(inProgressEl);
+    renderCardForm(inProgressEl);
     const cardFormSubmitBtn = document.querySelector('#card-form-submit');
     cardFormSubmitBtn.addEventListener('click', () => {
         const cardFormDesriptionInput = document.querySelector('#card-form-description');
         todoList.add(cardFormDesriptionInput.value, 'in progress');
     });
+    removeAddButton(inProgressAddBtnEl);
 });
 
 completeAddBtnEl.addEventListener('click', () => {
-    cardFormHandler.open(completeEl);
+    renderCardForm(completeEl);
     const cardFormSubmitBtn = document.querySelector('#card-form-submit');
     cardFormSubmitBtn.addEventListener('click', () => {
         const cardFormDesriptionInput = document.querySelector('#card-form-description');
         todoList.add(cardFormDesriptionInput.value, 'complete');
     });
+    removeAddButton(completeAddBtnEl);
 });
 
 clearAllBtn.addEventListener('click', () => {

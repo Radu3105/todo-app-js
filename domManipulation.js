@@ -60,13 +60,24 @@ function renderCardForm(container) {
     formContainerSubmitBtn.id = 'card-form-submit';
     formContainerSubmitBtn.textContent = 'Submit';
 
+    let formContainerCancelBtn = document.createElement('button');
+    formContainerCancelBtn.id = 'card-form-cancel';
+    formContainerCancelBtn.textContent = 'Cancel';
+
     formContainer.appendChild(formDescriptionInput);
     formContainer.appendChild(formContainerSubmitBtn);
+    formContainer.appendChild(formContainerCancelBtn);
 
     container.appendChild(formContainer);
+}
+
+
+function removeAddButton(container) {
+    container.remove();
 }
 
 export {
     renderTodos,
     renderCardForm,
+    removeAddButton,
 }
