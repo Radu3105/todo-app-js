@@ -45,6 +45,11 @@ function renderTodoOptions(container, todoListInstance, todoId) {
     removeBtn.addEventListener('click', () => {
         todoListInstance.remove(todoId);
     });
+
+    modifyBtn.addEventListener('click', () => {
+        let todoContainer = modifyBtn.parentElement.parentElement;
+        renderEditForm(todoContainer, todoListInstance, todoId);
+    });
 }
 
 function renderCardForm(container) {
@@ -71,13 +76,41 @@ function renderCardForm(container) {
     container.appendChild(formContainer);
 }
 
+function renderEditForm(container, todoListInstance, todoId) {
+    let editForm = document.createElement('form');
+    let descriptionInput = document.createElement('input');
+    let statusInput = document.createElement('input');
+    let submitBtn = document.createElement('button');
+
+    container.removeChild(container.children[0]);
+
+    let todo = todoListInstance.getById(todoId);
+
+    descriptionInput.type = 'text';
+    descriptionInput.value = todo.description;
+
+    editForm.appendChild(descriptionInput);
+    
+    submitBtn.type = 'submit';
+    submitBtn.textContent = 'Submit';
+    editForm.appendChild(submitBtn);
+
+    editForm.addEventListener('submit', () => {
+        todoListInstance.update(todoId, descriptionInput.value, todo.status);
+    });
+
+    container.appendChild(editForm);    
+}
 
 function removeAddButton(container) {
     container.remove();
 }
 
+// function removeOption
+
 export {
     renderTodos,
     renderCardForm,
+    renderEditForm,
     removeAddButton,
 }

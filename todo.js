@@ -26,6 +26,14 @@ class TodoList {
         location.reload();
     }
 
+    update(id, description, status) {
+        let todo = this.getById(id);
+        todo.description = description;
+        todo.status = status;
+        saveToLocalStorage('todos', this.items);
+        location.reload();
+    }
+
     remove(id) {
         let itemIndex = this.items.findIndex((el) => el.id === id);
         if (itemIndex !== -1) {
@@ -33,6 +41,10 @@ class TodoList {
             saveToLocalStorage('todos', this.items);
             location.reload();
         }
+    }
+
+    getById(id) {
+        return this.items.find((el) => el.id === id);
     }
 
     clear() {
