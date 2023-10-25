@@ -3,10 +3,11 @@ import { loadFromLocalStorage, saveToLocalStorage } from "./localStorageHelpers.
 let currentId = loadFromLocalStorage('currentId') ? loadFromLocalStorage('currentId') : 0;
 
 class Todo {
-    constructor(description, status) {
+    constructor(description, status, priority) {
         this.id = currentId++;
         this.description = description;
         this.status = status;
+        this.priority = priority;
     }
 }
 
@@ -15,8 +16,8 @@ class TodoList {
         this.items = items;
     }
 
-    add(description, status) {        
-        this.items.push(new Todo(description, status));
+    add(description, status, priority) {        
+        this.items.push(new Todo(description, status, priority));
 
         // Save the todos and the current id to localStorage
         saveToLocalStorage('todos', this.items);
@@ -26,10 +27,11 @@ class TodoList {
         location.reload();
     }
 
-    update(id, description, status) {
+    update(id, description, status, priority) {
         let todo = this.getById(id);
         todo.description = description;
         todo.status = status;
+        todo.priority = priority;
         saveToLocalStorage('todos', this.items);
         location.reload();
     }

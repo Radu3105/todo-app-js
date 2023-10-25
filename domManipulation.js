@@ -3,6 +3,9 @@ function renderTodos(container, todos, todoListInstance) {
         let todoEl = document.createElement('div');
         todoEl.classList.add('todo');
         
+        let todoDetails = document.createElement('div');
+        todoDetails.classList.add('todo-details');
+
         todoEl.addEventListener('mouseenter', () => {
             renderTodoOptions(todoEl, todoListInstance, todo.id);
         });
@@ -12,9 +15,33 @@ function renderTodos(container, todos, todoListInstance) {
         });
 
         let todoDescription = document.createElement('p');
+        todoDescription.classList.add('todo-description');
         todoDescription.textContent = todo.description;
-        todoEl.appendChild(todoDescription);
+        todoDetails.appendChild(todoDescription);
 
+        if (todo.priority !== 'None') {
+            let todoPriority = document.createElement('p');
+            todoPriority.textContent = 'Priority: ';
+
+            let todoPrioritySpan = document.createElement('span');
+            switch (todo.priority) {
+                case 'Low':
+                    todoPrioritySpan.textContent = 'Low';
+                    todoPrioritySpan.style.color = 'green';
+                    break;
+                case 'Medium':
+                    todoPrioritySpan.textContent = 'Medium';
+                    todoPrioritySpan.style.color = 'orange';
+                    break;
+                case 'High':
+                    todoPrioritySpan.textContent = 'High';
+                    todoPrioritySpan.style.color = 'red';
+                    break;
+            }
+            todoPriority.appendChild(todoPrioritySpan);
+            todoDetails.appendChild(todoPriority);
+        }
+        todoEl.appendChild(todoDetails);
         container.appendChild(todoEl); 
     }
 }
@@ -56,10 +83,38 @@ function renderCardForm(container) {
     let formContainer = document.createElement('form');
     formContainer.classList.add('card-form');
     
+    let formDescriptionLabel = document.createElement('label');
+    formDescriptionLabel.textContent = 'Description: ';
+
     let formDescriptionInput = document.createElement('input');
     formDescriptionInput.id = 'card-form-description';
     formDescriptionInput.type = 'text';
-    formDescriptionInput.placeholder = 'Enter description';
+    formDescriptionInput.placeholder = 'Type in a description';
+
+    let formPriorityLabel = document.createElement('label');
+    formPriorityLabel.textContent = 'Priority: ';
+
+    let formPrioritySelectInput = document.createElement('select');
+    formPrioritySelectInput.id = 'card-form-priorities';
+
+    let formPrioritySelectOptionNone = document.createElement('option');
+    formPrioritySelectOptionNone.value = 'None';
+    formPrioritySelectOptionNone.textContent = 'None';
+
+    let formPrioritySelectOptionLow = document.createElement('option');
+    formPrioritySelectOptionLow.value = 'Low';
+    formPrioritySelectOptionLow.textContent = 'Low';
+
+    let formPrioritySelectOptionMedium = document.createElement('option');
+    formPrioritySelectOptionMedium.value = 'Medium';
+    formPrioritySelectOptionMedium.textContent = 'Medium';
+
+    let formPrioritySelectOptionHigh = document.createElement('option');
+    formPrioritySelectOptionHigh.value = 'High';
+    formPrioritySelectOptionHigh.textContent = 'High';
+
+    let formButtonGroup = document.createElement('div');
+    formButtonGroup.classList.add('form-btn-group');
 
     let formContainerSubmitBtn = document.createElement('button');
     formContainerSubmitBtn.id = 'card-form-submit';
@@ -69,9 +124,21 @@ function renderCardForm(container) {
     formContainerCancelBtn.id = 'card-form-cancel';
     formContainerCancelBtn.textContent = 'Cancel';
 
-    formContainer.appendChild(formDescriptionInput);
-    formContainer.appendChild(formContainerSubmitBtn);
-    formContainer.appendChild(formContainerCancelBtn);
+    formDescriptionLabel.appendChild(formDescriptionInput);
+
+    formPriorityLabel.appendChild(formPrioritySelectInput);
+
+    formPrioritySelectInput.appendChild(formPrioritySelectOptionNone);
+    formPrioritySelectInput.appendChild(formPrioritySelectOptionLow);
+    formPrioritySelectInput.appendChild(formPrioritySelectOptionMedium);
+    formPrioritySelectInput.appendChild(formPrioritySelectOptionHigh);
+
+    formButtonGroup.appendChild(formContainerSubmitBtn);
+    formButtonGroup.appendChild(formContainerCancelBtn);
+
+    formContainer.appendChild(formDescriptionLabel);
+    formContainer.appendChild(formPriorityLabel);
+    formContainer.appendChild(formButtonGroup);
 
     container.appendChild(formContainer);
 }
@@ -86,17 +153,55 @@ function renderEditForm(container, todoListInstance, todoId) {
 
     let todo = todoListInstance.getById(todoId);
 
+    let formDescriptionLabel = document.createElement('label');
+    formDescriptionLabel.textContent = 'Description: ';
+
     descriptionInput.type = 'text';
     descriptionInput.value = todo.description;
 
-    editForm.appendChild(descriptionInput);
+    formDescriptionLabel.appendChild(descriptionInput);
+
+    let formPriorityLabel = document.createElement('label');
+    formPriorityLabel.textContent = 'Priority: ';
+
+    let formPrioritySelectInput = document.createElement('select');
+    formPrioritySelectInput.id = 'card-form-priorities';
+    formPrioritySelectInput.value = todo.priority;
+    // TODO: Add default selected value to be the current priority of the todo.
+
+    let formPrioritySelectOptionNone = document.createElement('option');
+    formPrioritySelectOptionNone.value = 'None';
+    formPrioritySelectOptionNone.textContent = 'None';
+
+    let formPrioritySelectOptionLow = document.createElement('option');
+    formPrioritySelectOptionLow.value = 'Low';
+    formPrioritySelectOptionLow.textContent = 'Low';
+
+    let formPrioritySelectOptionMedium = document.createElement('option');
+    formPrioritySelectOptionMedium.value = 'Medium';
+    formPrioritySelectOptionMedium.textContent = 'Medium';
+
+    let formPrioritySelectOptionHigh = document.createElement('option');
+    formPrioritySelectOptionHigh.value = 'High';
+    formPrioritySelectOptionHigh.textContent = 'High';
+
+    editForm.appendChild(formDescriptionLabel);
+    
+    formPrioritySelectInput.appendChild(formPrioritySelectOptionNone);
+    formPrioritySelectInput.appendChild(formPrioritySelectOptionLow);
+    formPrioritySelectInput.appendChild(formPrioritySelectOptionMedium);
+    formPrioritySelectInput.appendChild(formPrioritySelectOptionHigh);
+    
+    formPriorityLabel.appendChild(formPrioritySelectInput);
+    
+    editForm.appendChild(formPriorityLabel);
     
     submitBtn.type = 'submit';
     submitBtn.textContent = 'Submit';
     editForm.appendChild(submitBtn);
 
     editForm.addEventListener('submit', () => {
-        todoListInstance.update(todoId, descriptionInput.value, todo.status);
+        todoListInstance.update(todoId, descriptionInput.value, todo.status, formPrioritySelectInput.value);
     });
 
     container.appendChild(editForm);    
@@ -105,8 +210,6 @@ function renderEditForm(container, todoListInstance, todoId) {
 function removeAddButton(container) {
     container.remove();
 }
-
-// function removeOption
 
 export {
     renderTodos,

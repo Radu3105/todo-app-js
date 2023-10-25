@@ -29,7 +29,8 @@ todoAddBtnEl.addEventListener('click', () => {
     const cardFormSubmitBtn = document.querySelector('#card-form-submit');
     cardFormSubmitBtn.addEventListener('click', () => {
         const cardFormDesriptionInput = document.querySelector('#card-form-description');
-        todoList.add(cardFormDesriptionInput.value, 'to do');
+        const cardFormPriorityInput = document.querySelector('#card-form-priorities');
+        todoList.add(cardFormDesriptionInput.value, 'to do', cardFormPriorityInput.value);
     });
     removeAddButton(todoAddBtnEl);
 });
@@ -39,7 +40,8 @@ inProgressAddBtnEl.addEventListener('click', () => {
     const cardFormSubmitBtn = document.querySelector('#card-form-submit');
     cardFormSubmitBtn.addEventListener('click', () => {
         const cardFormDesriptionInput = document.querySelector('#card-form-description');
-        todoList.add(cardFormDesriptionInput.value, 'in progress');
+        const cardFormPriorityInput = document.querySelector('#card-form-priorities');
+        todoList.add(cardFormDesriptionInput.value, 'in progress', cardFormPriorityInput.value);
     });
     removeAddButton(inProgressAddBtnEl);
 });
@@ -49,7 +51,8 @@ completeAddBtnEl.addEventListener('click', () => {
     const cardFormSubmitBtn = document.querySelector('#card-form-submit');
     cardFormSubmitBtn.addEventListener('click', () => {
         const cardFormDesriptionInput = document.querySelector('#card-form-description');
-        todoList.add(cardFormDesriptionInput.value, 'complete');
+        const cardFormPriorityInput = document.querySelector('#card-form-priorities');
+        todoList.add(cardFormDesriptionInput.value, 'complete', cardFormPriorityInput.value);
     });
     removeAddButton(completeAddBtnEl);
 });
