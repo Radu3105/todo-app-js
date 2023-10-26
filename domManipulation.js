@@ -76,6 +76,9 @@ function renderTodoOptions(container, todoListInstance, todoId) {
     modifyBtn.addEventListener('click', () => {
         let todoContainer = modifyBtn.parentElement.parentElement;
         renderEditForm(todoContainer, todoListInstance, todoId);
+        console.log(buttonGroup);
+        removeOptionButtonsContainer(buttonGroup);
+        console.log(buttonGroup);
     });
 }
 
@@ -146,7 +149,6 @@ function renderCardForm(container) {
 function renderEditForm(container, todoListInstance, todoId) {
     let editForm = document.createElement('form');
     let descriptionInput = document.createElement('input');
-    let statusInput = document.createElement('input');
     let submitBtn = document.createElement('button');
 
     container.removeChild(container.children[0]);
@@ -194,20 +196,53 @@ function renderEditForm(container, todoListInstance, todoId) {
     
     formPriorityLabel.appendChild(formPrioritySelectInput);
     
+    editForm.classList.add('edit-form');
     editForm.appendChild(formPriorityLabel);
     
+    let formStatusLabel = document.createElement('label');
+    formStatusLabel.textContent = 'Status: ';
+
+    let formStatusSelectInput = document.createElement('select');
+    formStatusSelectInput.id = 'card-form-status';
+    formStatusSelectInput.value = todo.status;
+    // TODO: Add default selected value to be the current status of the todo.
+
+    let formStatusSelectOptionToDo = document.createElement('option');
+    formStatusSelectOptionToDo.value = 'To Do';
+    formStatusSelectOptionToDo.textContent = 'To Do';
+
+    let formStatusSelectOptionInProgress = document.createElement('option');
+    formStatusSelectOptionInProgress.value = 'In Progress';
+    formStatusSelectOptionInProgress.textContent = 'In Progress';
+
+    let formStatusSelectOptionComplete = document.createElement('option');
+    formStatusSelectOptionComplete.value = 'Complete';
+    formStatusSelectOptionComplete.textContent = 'Complete';
+
+    formStatusSelectInput.appendChild(formStatusSelectOptionToDo);
+    formStatusSelectInput.appendChild(formStatusSelectOptionInProgress);
+    formStatusSelectInput.appendChild(formStatusSelectOptionComplete);
+
+    formStatusLabel.appendChild(formStatusSelectInput);
+
+    editForm.appendChild(formStatusLabel);
+
     submitBtn.type = 'submit';
     submitBtn.textContent = 'Submit';
     editForm.appendChild(submitBtn);
 
     editForm.addEventListener('submit', () => {
-        todoListInstance.update(todoId, descriptionInput.value, todo.status, formPrioritySelectInput.value);
+        todoListInstance.update(todoId, descriptionInput.value, formStatusSelectInput.value, formPrioritySelectInput.value);
     });
 
     container.appendChild(editForm);    
 }
 
 function removeAddButton(container) {
+    container.remove();
+}
+
+function removeOptionButtonsContainer(container) {
     container.remove();
 }
 

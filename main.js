@@ -20,9 +20,9 @@ const todoRemoveBtn = document.querySelector('#todo-remove-btn');
 const todoList = loadFromLocalStorage('todos') ? new TodoList(loadFromLocalStorage('todos')) : new TodoList();
 
 // Render todos based on their status
-renderTodos(todoListEl, todoList.items.filter((item) => item.status === 'to do'), todoList);
-renderTodos(inProgressListEl, todoList.items.filter((item) => item.status === 'in progress'), todoList);
-renderTodos(completeListEl, todoList.items.filter((item) => item.status === 'complete'), todoList);
+renderTodos(todoListEl, todoList.items.filter((item) => item.status === 'To Do'), todoList);
+renderTodos(inProgressListEl, todoList.items.filter((item) => item.status === 'In Progress'), todoList);
+renderTodos(completeListEl, todoList.items.filter((item) => item.status === 'Complete'), todoList);
 
 todoAddBtnEl.addEventListener('click', () => {
     renderCardForm(todoEl);
@@ -30,7 +30,7 @@ todoAddBtnEl.addEventListener('click', () => {
     cardFormSubmitBtn.addEventListener('click', () => {
         const cardFormDesriptionInput = document.querySelector('#card-form-description');
         const cardFormPriorityInput = document.querySelector('#card-form-priorities');
-        todoList.add(cardFormDesriptionInput.value, 'to do', cardFormPriorityInput.value);
+        todoList.add(cardFormDesriptionInput.value, 'To Do', cardFormPriorityInput.value);
     });
     removeAddButton(todoAddBtnEl);
 });
@@ -41,7 +41,7 @@ inProgressAddBtnEl.addEventListener('click', () => {
     cardFormSubmitBtn.addEventListener('click', () => {
         const cardFormDesriptionInput = document.querySelector('#card-form-description');
         const cardFormPriorityInput = document.querySelector('#card-form-priorities');
-        todoList.add(cardFormDesriptionInput.value, 'in progress', cardFormPriorityInput.value);
+        todoList.add(cardFormDesriptionInput.value, 'In Progress', cardFormPriorityInput.value);
     });
     removeAddButton(inProgressAddBtnEl);
 });
@@ -52,7 +52,7 @@ completeAddBtnEl.addEventListener('click', () => {
     cardFormSubmitBtn.addEventListener('click', () => {
         const cardFormDesriptionInput = document.querySelector('#card-form-description');
         const cardFormPriorityInput = document.querySelector('#card-form-priorities');
-        todoList.add(cardFormDesriptionInput.value, 'complete', cardFormPriorityInput.value);
+        todoList.add(cardFormDesriptionInput.value, 'Complete', cardFormPriorityInput.value);
     });
     removeAddButton(completeAddBtnEl);
 });
