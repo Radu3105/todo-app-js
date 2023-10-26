@@ -1,6 +1,7 @@
 import TodoList from "./todo.js";
 import { loadFromLocalStorage } from "./localStorageHelpers.js";
 import { renderTodos, removeAddButton, renderCardForm } from "./domManipulation.js";
+import './styles.css';
 
 const todoEl = document.querySelector('#state-to-do');
 const inProgressEl = document.querySelector('#state-in-progress');
