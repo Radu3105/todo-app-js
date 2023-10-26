@@ -56,12 +56,12 @@ function renderTodoOptions(container, todoListInstance, todoId) {
     buttonGroup.id = 'todo-button-group';
     modifyBtn.id = 'todo-modify-btn';
     modifyBtn.classList.add('todo-option-btn');
-    modifyIcon.src = './assets/icons/modify.png';
+    modifyIcon.src = '../assets/icons/modify.png';
     modifyIcon.classList.add('todo-option-btn-img');
     modifyBtn.appendChild(modifyIcon);
     removeBtn.id = 'todo-remove-btn';
     removeBtn.classList.add('todo-option-btn');
-    removeIcon.src = './assets/icons/remove.png';
+    removeIcon.src = '../assets/icons/remove.png';
     removeIcon.classList.add('todo-option-btn-img');
     removeBtn.appendChild(removeIcon);
     buttonGroup.appendChild(modifyBtn);
@@ -175,14 +175,17 @@ function renderEditForm(container, todoListInstance, todoId) {
     let formPrioritySelectOptionLow = document.createElement('option');
     formPrioritySelectOptionLow.value = 'Low';
     formPrioritySelectOptionLow.textContent = 'Low';
+    formPrioritySelectOptionLow.style.color = 'dodgerblue';
 
     let formPrioritySelectOptionMedium = document.createElement('option');
     formPrioritySelectOptionMedium.value = 'Medium';
     formPrioritySelectOptionMedium.textContent = 'Medium';
+    formPrioritySelectOptionMedium.style.color = 'orange';
 
     let formPrioritySelectOptionHigh = document.createElement('option');
     formPrioritySelectOptionHigh.value = 'High';
     formPrioritySelectOptionHigh.textContent = 'High';
+    formPrioritySelectOptionHigh.style.color = 'red';
 
     editForm.appendChild(formDescriptionLabel);
     
@@ -209,19 +212,21 @@ function renderEditForm(container, todoListInstance, todoId) {
     let formStatusSelectInput = document.createElement('select');
     formStatusSelectInput.id = 'card-form-status';
     formStatusSelectInput.value = todo.status;
-    // TODO: Add default selected value to be the current status of the todo.
 
     let formStatusSelectOptionToDo = document.createElement('option');
     formStatusSelectOptionToDo.value = 'To Do';
     formStatusSelectOptionToDo.textContent = 'To Do';
+    formStatusSelectOptionToDo.style.color = 'red';
 
     let formStatusSelectOptionInProgress = document.createElement('option');
     formStatusSelectOptionInProgress.value = 'In Progress';
     formStatusSelectOptionInProgress.textContent = 'In Progress';
+    formStatusSelectOptionInProgress.style.color = 'dodgerblue';
 
     let formStatusSelectOptionComplete = document.createElement('option');
     formStatusSelectOptionComplete.value = 'Complete';
     formStatusSelectOptionComplete.textContent = 'Complete';
+    formStatusSelectOptionComplete.style.color = 'green';
 
     formStatusSelectInput.appendChild(formStatusSelectOptionToDo);
     formStatusSelectInput.appendChild(formStatusSelectOptionInProgress);

@@ -79,6 +79,10 @@ select {
     height: 50px;
 }
 
+.spacer-200px {
+    height: 200px;
+}
+
 .title {
     margin-top: 50px;
     color: greenyellow;
@@ -96,7 +100,6 @@ select {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    margin-top: 200px;
 }
 
 .state-container {
@@ -263,4 +266,16 @@ select {
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+}
+
+#clear-all {
+    margin-bottom: 25px;
+    border: none;
+    width: 130px;
+    height: 35px;
+}
+
+#clear-all:hover {
+    color: white;
+    background-color: rgb(218, 3, 3);
 }
