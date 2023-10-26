@@ -60,5 +60,3 @@ completeAddBtnEl.addEventListener('click', () => {
 clearAllBtn.addEventListener('click', () => {
     todoList.clear();
 });
-
-console.log(todoList);

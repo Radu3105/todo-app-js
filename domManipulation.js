@@ -76,9 +76,7 @@ function renderTodoOptions(container, todoListInstance, todoId) {
     modifyBtn.addEventListener('click', () => {
         let todoContainer = modifyBtn.parentElement.parentElement;
         renderEditForm(todoContainer, todoListInstance, todoId);
-        console.log(buttonGroup);
         removeOptionButtonsContainer(buttonGroup);
-        console.log(buttonGroup);
     });
 }
 
@@ -169,7 +167,6 @@ function renderEditForm(container, todoListInstance, todoId) {
     let formPrioritySelectInput = document.createElement('select');
     formPrioritySelectInput.id = 'card-form-priorities';
     formPrioritySelectInput.value = todo.priority;
-    // TODO: Add default selected value to be the current priority of the todo.
 
     let formPrioritySelectOptionNone = document.createElement('option');
     formPrioritySelectOptionNone.value = 'None';
@@ -194,6 +191,13 @@ function renderEditForm(container, todoListInstance, todoId) {
     formPrioritySelectInput.appendChild(formPrioritySelectOptionMedium);
     formPrioritySelectInput.appendChild(formPrioritySelectOptionHigh);
     
+    for (const option of formPrioritySelectInput.children) {
+        if (option.textContent === todo.priority) {
+            option.setAttribute('selected', true);
+            break;
+        }
+    }
+
     formPriorityLabel.appendChild(formPrioritySelectInput);
     
     editForm.classList.add('edit-form');
@@ -222,6 +226,13 @@ function renderEditForm(container, todoListInstance, todoId) {
     formStatusSelectInput.appendChild(formStatusSelectOptionToDo);
     formStatusSelectInput.appendChild(formStatusSelectOptionInProgress);
     formStatusSelectInput.appendChild(formStatusSelectOptionComplete);
+
+    for (const option of formStatusSelectInput.children) {
+        if (option.textContent === todo.status) {
+            option.setAttribute('selected', true);
+            break;
+        }
+    }
 
     formStatusLabel.appendChild(formStatusSelectInput);
 
